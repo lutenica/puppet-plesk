@@ -1,0 +1,28 @@
+{
+  "name": "lutneica-plesk",
+  "version": "0.1.0",
+  "author": "Me",
+  "summary": "",
+  "license": "Apache-2.0",
+  "source": "",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "20.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 5.5.10 < 8.0.0"
+    }
+  ],
+  "pdk-version": "2.3.0",
+  "template-url": "pdk-default#2.3.0",
+  "template-ref": "tags/2.3.0-0-g8aaceff"
+}
