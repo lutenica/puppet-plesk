@@ -29,7 +29,7 @@ already added to your infrastructure.
 
 ## Usage
 
-####Install a plesk extension:
+#### Install a plesk extension:
 
 >  node 'plesk.node' {
 >  plesk_extension { 'wp-toolkit':
@@ -37,7 +37,7 @@ already added to your infrastructure.
 >  }
 > }
 
-####Install a plesk theme:
+#### Install a plesk theme:
 
 > node 'plesk.node {
 >   include plesk::theme
