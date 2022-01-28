@@ -91,32 +91,46 @@
 <p>Plesk extensions</p>
 </li><li>
 <p>PHP and Nginx settings</p>
+</li><li>
+<p>Plesk service plans</p>
 </li></ul>
 
 <h3 id="label-Beginning+with+plesk">Beginning with plesk</h3>
 
-<p>The very basic steps needed for a user to get the module up and running.
-This can include setup steps, if necessary, or it can be an example of the
-most basic use of the module.</p>
+<p>Download your into your modules directory. You need a node that has Plesk
+installed already added to your infrastructure.</p>
 
 <h2 id="label-Usage">Usage</h2>
 
-<p>Include usage examples for common use cases in the <strong>Usage</strong>
-section. Show your users how to use your module to solve problems, and be
-sure to include code examples. Include three to five examples of the most
-important or common tasks a user can accomplish with your module. Show
-users how to accomplish more complex tasks that involve different types,
-classes, and functions working in tandem.</p>
+<h4 id="label-Install+a+plesk+extension-3A">Install a plesk extension:</h4>
+
+<blockquote>
+<p>node &#39;plesk.node&#39; {  plesk_extension { &#39;wp-toolkit&#39;: 
+ensure =&gt; present  } }</p>
+</blockquote>
+
+<h4 id="label-Install+a+plesk+theme-3A">Install a plesk theme:</h4>
+
+<blockquote>
+<p>node &#39;plesk.node {  include plesk::theme }</p>
+</blockquote>
+
+<p>You can then specify what the theme package name is in hiera:</p>
+
+<blockquote>
+<p>plesk::theme::theme_name: &#39;theme-name&#39; plesk::theme::theme_path:
+&#39;/path/to/theme-name.zip&#39;</p>
+</blockquote>
+
+<p>Note that the theme-name should be available to download through apt. Also
+the meta.xml of the theme needs to have the name of the theme be the same
+as the actual package name and the one you use in theme_name.</p>
 
 <h2 id="label-Limitations">Limitations</h2>
 <ul><li>
 <p>This has been tested with Ubuntu 20.04 only.</p>
 </li><li>
 <p>Plesk 18.0.X.</p>
-</li><li>
-<p>The plesk::theme theme_name needs to match whatever the installed
-theme&#39;s  name will end up beeing in the meta.xml. Otherwise the ensure
-param will not work.</p>
 </li></ul>
 
 <h2 id="label-Development">Development</h2>

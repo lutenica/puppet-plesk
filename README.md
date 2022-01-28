@@ -20,27 +20,43 @@
 * Plesk themes
 * Plesk extensions
 * PHP and Nginx settings
+* Plesk service plans
 
 ### Beginning with plesk
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most basic
-use of the module.
+Download your into your modules directory. You need a node that has Plesk installed
+already added to your infrastructure.
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your
-users how to use your module to solve problems, and be sure to include code
-examples. Include three to five examples of the most important or common tasks a
-user can accomplish with your module. Show users how to accomplish more complex
-tasks that involve different types, classes, and functions working in tandem.
+####Install a plesk extension:
+
+>  node 'plesk.node' {
+>  plesk_extension { 'wp-toolkit':
+>    ensure => present
+>  }
+> }
+
+####Install a plesk theme:
+
+> node 'plesk.node {
+>   include plesk::theme
+> }
+
+You can then specify what the theme package name is in hiera:
+
+> plesk::theme::theme_name: 'theme-name'
+> plesk::theme::theme_path: '/path/to/theme-name.zip'
+
+Note that the theme-name should be available to download through apt.
+Also the meta.xml of the theme needs to have the name of the theme 
+be the same as the actual package name and the one you use in 
+theme_name. 
 
 ## Limitations
  
  * This has been tested with Ubuntu 20.04 only.
  * Plesk 18.0.X.
- * The plesk::theme theme_name needs to match whatever the installed theme's 
-   name will end up beeing in the meta.xml. Otherwise the ensure param will not work.
 
 ## Development
 

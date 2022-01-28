@@ -2,7 +2,12 @@
 
 require 'spec_helper'
 
-describe 'plesk::extensions' do
+describe 'plesk::service_plan' do
+  let(:title) { 'namevar' }
+  let(:params) do
+    {}
+  end
+
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
