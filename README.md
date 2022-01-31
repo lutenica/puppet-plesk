@@ -29,24 +29,24 @@ already added to your infrastructure.
 
 ## Usage
 
-####Install a plesk extension:
+#### Install a plesk extension:
 
->  node 'plesk.node' {
->  plesk_extension { 'wp-toolkit':
->    ensure => present
->  }
-> }
+  node 'plesk.node' {
+  plesk_extension { 'wp-toolkit':
+    ensure => present
+  }
+ }
 
-####Install a plesk theme:
+#### Install a plesk theme:
 
-> node 'plesk.node {
->   include plesk::theme
-> }
+ node 'plesk.node {
+   include plesk::theme
+ }
 
 You can then specify what the theme package name is in hiera:
 
-> plesk::theme::theme_name: 'theme-name'
-> plesk::theme::theme_path: '/path/to/theme-name.zip'
+ plesk::theme::theme_name: 'theme-name'
+ plesk::theme::theme_path: '/path/to/theme-name.zip'
 
 Note that the theme-name should be available to download through apt.
 Also the meta.xml of the theme needs to have the name of the theme 
