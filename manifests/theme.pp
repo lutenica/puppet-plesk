@@ -16,8 +16,8 @@
 #
 class plesk::theme (
   Enum['present', 'absent'] $ensure = present,
-  String $theme_name                = lookup('plesk::theme::theme_name'),
-  String $theme_path                = lookup('plesk::theme::theme_path')
+  String $theme_name,
+  String $theme_path
 ) {
   # Install/Uninstall/Upgrade the theme package
   package { "$theme_name":
