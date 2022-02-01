@@ -23,11 +23,11 @@ Puppet::Type.newtype(:service_plan) do
     desc 'Name of the plan'
   end
 
-  newproperty(:option) do
+  newparam(:option) do
     desc 'Option for update'
   end
 
-  newproperty(:param) do
+  newparam(:param) do
     desc 'Parameter for the option'
   end
 

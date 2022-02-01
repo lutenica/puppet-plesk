@@ -120,8 +120,6 @@
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>lookup(&#39;plesk::theme::theme_name&#39;)</tt>)</em>
-      
       
         &mdash;
         <div class='inline'>
@@ -138,8 +136,6 @@ itself, i.e in the meta.xml otherwise ensures wont work as expected.</p>
       
         <span class='type'>(<tt>String</tt>)</span>
       
-      
-        <em class="default">(defaults to: <tt>lookup(&#39;plesk::theme::theme_path&#39;)</tt>)</em>
       
       
         &mdash;
@@ -182,8 +178,8 @@ itself, i.e in the meta.xml otherwise ensures wont work as expected.</p>
 
 class plesk::theme (
   Enum[&#39;present&#39;, &#39;absent&#39;] $ensure = present,
-  String $theme_name                = lookup(&#39;plesk::theme::theme_name&#39;),
-  String $theme_path                = lookup(&#39;plesk::theme::theme_path&#39;)
+  String $theme_name,
+  String $theme_path
 ) {
   # Install/Uninstall/Upgrade the theme package
   package { &quot;$theme_name&quot;:

@@ -104,23 +104,17 @@ installed already added to your infrastructure.</p>
 
 <h4 id="label-Install+a+plesk+extension-3A">Install a plesk extension:</h4>
 
-<blockquote>
 <p>node &#39;plesk.node&#39; {  plesk_extension { &#39;wp-toolkit&#39;: 
-ensure =&gt; present  } }</p>
-</blockquote>
+ensure =&gt; present  }  }</p>
 
 <h4 id="label-Install+a+plesk+theme-3A">Install a plesk theme:</h4>
 
-<blockquote>
-<p>node &#39;plesk.node {  include plesk::theme }</p>
-</blockquote>
+<p>node &#39;plesk.node {  include plesk::theme  }</p>
 
 <p>You can then specify what the theme package name is in hiera:</p>
 
-<blockquote>
-<p>plesk::theme::theme_name: &#39;theme-name&#39; plesk::theme::theme_path:
+<p>plesk::theme::theme_name: &#39;theme-name&#39;  plesk::theme::theme_path:
 &#39;/path/to/theme-name.zip&#39;</p>
-</blockquote>
 
 <p>Note that the theme-name should be available to download through apt. Also
 the meta.xml of the theme needs to have the name of the theme be the same
