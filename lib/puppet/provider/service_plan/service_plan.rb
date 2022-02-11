@@ -6,7 +6,7 @@ Puppet::Type.type(:service_plan).provide(:plan) do
   puts defined?(psql_caller)
 
   def exists?
-    psql_caller("select name from Templates where name = '#{@resource[:name]}'")
+    self.class.psql_caller("select name from Templates where name = '#{@resource[:name]}'")
   end
 
   def create
