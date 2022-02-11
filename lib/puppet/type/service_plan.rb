@@ -5,16 +5,22 @@ Puppet::Type.newtype(:service_plan) do
 
     desc 'Ensure the action to perform'
 
-    newvalue :create do
-      provider.create
+    newvalue :present do
+      unless provider.exists
+        provider.create
+      end
     end
 
-    newvalue :delete do
-      provider.delete
+    newvalue :absent do
+      if provider.exists
+        provider.delete
+      end
     end
 
     newvalue :update do
-      provider.update
+      if provider.exists
+        provider.update
+      end
     end
 
   end

@@ -27,9 +27,9 @@
 #   Parameter for the option  
 #
 define plesk::service_plan (
-  Enum['create','update','delete'] $ensure = create,
-  Optional['String'] $option,
-  Optional['String'] $param
+  Enum['present','absent','update'] $ensure = present,
+  Optional['String'] $option = undef,
+  Optional['String'] $param = undef
 ) { 
     service_plan { $name:,
       ensure => $ensure,
