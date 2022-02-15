@@ -1,12 +1,25 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'plesk_sql')) 
-Puppet::Type.type(:service_plan).provide(:plan) do
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'plesk')) 
+Puppet::Type.type(:service_plan).provide(:plan, parent: Puppet::Provider::Plesk) do
   desc 'Plesk service plan management'
 
   commands :plesk => "/usr/sbin/plesk"
-  puts defined?(psql_caller)
+ puts @resource.parameters_with_value
+ def exists?
+ 
+   name = @resource[:name]
 
-  def exists?
-    self.class.psql_caller("select name from Templates where name = '#{@resource[:name]}'")
+   _state = self.class.psql_caller("select name from Templates where name = '#{name}'")
+   state = _state.to_s
+
+   if state.tr("\n", '') == name
+
+     return true
+
+   else
+
+     return false
+
+   end
   end
 
   def create
