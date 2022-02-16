@@ -120,6 +120,22 @@ ensure =&gt; present  }  }</p>
 the meta.xml of the theme needs to have the name of the theme be the same
 as the actual package name and the one you use in theme_name.</p>
 
+<h4 id="label-Create+a+plesk+plan-3A">Create a plesk plan:</h4>
+
+<p>node &#39;plesk.node&#39; {  service_plan { &#39;planname&#39;:  ensure
+=&gt; present,  php_served_by_nginx =&gt; &#39;true&#39;  } }</p>
+
+<p>Note that the current plan provider only supports hosting related
+parameters. Everything mail related is removed. It can be easily added and
+will be in future, as all that is required is to actually add the params to
+the defined type and the custom type itself. The provider would only need
+the paramteres added to the Fix_dash array if one is forced to use an
+underscore.</p>
+
+<p>Also due to the way Plesk works we can only ensure that a plan exists but
+not all values, so ensure only confirms it is created with the given
+params.</p>
+
 <h2 id="label-Limitations">Limitations</h2>
 <ul><li>
 <p>This has been tested with Ubuntu 20.04 only.</p>

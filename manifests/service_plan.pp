@@ -4,14 +4,15 @@
 #
 # @example
 #   plesk::service_plan { 'PlanName': 
-#     ensure               => present,
-#     _disk_space          => "100M",
-#     _php_served_by_nginx => "true",
-#     _overuse             => "block"
+#     ensure              => present,
+#     disk_space          => "100M",
+#     php_served_by_nginx => "true",
+#     overuse             => "block"
 #   }
 #
-# All params and their defaults described in 
+# All params have their details below:
 #  https://docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/service_plan-hosting-plans.38365/
+# Note that those with dashes, have been changed to the same but with underscores.
 #
 define plesk::service_plan (
   Enum['present','absent','update'] $ensure = present,
@@ -43,7 +44,7 @@ define plesk::service_plan (
   Optional[Enum['true','false']] $asp = 'false',
   Optional[Enum['true','false']] $ssi = 'false',
   Optional[Enum['true','false']] $php = 'true',
-  Optional[String] $php_handler_id = 'fpm',
+  Optional[String] $php_handler_id = 'plesk-php80-fpm',
   Optional[Enum['true','false']] $php_served_by_nginx = 'true',
   Optional[Enum['true','false']] $cgi = 'false',
   Optional[Enum['true','false']] $perl = 'false',
@@ -73,7 +74,7 @@ define plesk::service_plan (
   Optional[Enum['true','false']] $manage_anonftp = 'false',
   Optional[Enum['true','false']] $manage_subftp = 'true',
   Optional[Enum['true','false']] $manage_crontab = 'false',
-  Optional[Enum['true','false']] $manage_webapps = 'true',
+  Optional[Enum['true','false']] $manage_webapps = undef,
   Optional[Enum['true','false']] $manage_webstat = 'false',
   Optional[Enum['true','false']] $allow_local_backups = 'true',
   Optional[Enum['true','false']] $allow_ftp_backups = 'false',
@@ -93,19 +94,19 @@ define plesk::service_plan (
   Optional[String] $default_server_mysql = undef,
   Optional[String] $default_server_postgresql = undef,
   Optional[Enum['true','false']] $ext_permission_git_manage_git = 'false',
-  Optional[Enum['true','false']] $ext_permission_ruby_support_management = 'false',
-  Optional[Enum['true','false']] $ext_permission_ruby_state_management = 'false',
-  Optional[Enum['true','false']] $ext_permission_ruby_version_management = 'false',
-  Optional[Enum['true','false']] $ext_permission_nodejs_support_management = 'false',
-  Optional[Enum['true','false']] $ext_permission_nodejs_state_management = 'false',
-  Optional[Enum['true','false']] $ext_permission_nodejs_version_management = 'false',
+  Optional[Enum['true','false']] $ext_permission_ruby_support_management = undef,
+  Optional[Enum['true','false']] $ext_permission_ruby_state_management = undef,
+  Optional[Enum['true','false']] $ext_permission_ruby_version_management = undef,
+  Optional[Enum['true','false']] $ext_permission_nodejs_support_management = undef,
+  Optional[Enum['true','false']] $ext_permission_nodejs_state_management = undef,
+  Optional[Enum['true','false']] $ext_permission_nodejs_version_management = undef,
   Optional[Enum['true','false']] $ext_permission_wp_toolkit_manage_wordpress_toolkit = 'true',
   Optional[Enum['true','false']] $ext_permission_wp_toolkit_manage_security_wordpress_toolkit = 'true',
   Optional[Enum['true','false']] $ext_permission_wp_toolkit_manage_cloning = 'true',
   Optional[Enum['true','false']] $ext_permission_wp_toolkit_manage_syncing = 'true',
   Optional[Enum['true','false']] $ext_permission_wp_toolkit_manage_autoupdates = 'true'
 ) {
-    service_plan { $name:
+    service_plan { "$name":
       ensure                                                      => $ensure,
       max_dom_aliases                                             => $max_dom_aliases,
       overuse                                                     => $overuse,

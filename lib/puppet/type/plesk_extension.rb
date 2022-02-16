@@ -5,7 +5,7 @@ Puppet::Type.newtype(:plesk_extension) do
     desc 'Ensure the status of the resource'
 
     newvalue :present do
-      if !provider.exists?
+      unless provider.exsts?
         provider.create
       end
     end
@@ -17,23 +17,19 @@ Puppet::Type.newtype(:plesk_extension) do
     end
 
     newvalue :latest do
-      if provider.exists?
+      if provider.exists? 
         provider.upgrade
-      else
-        provider.create
       end
     end
 
     newvalue :enable do
-      if provider.exists?
+      unless provider.enabled?
         provider.enable
-      else
-        provider.create
       end
     end
 
     newvalue :disable do
-      if provider.exists?
+      if provider.enabled?
         provider.disable
       end
     end

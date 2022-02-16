@@ -2,51 +2,90 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'plesk'))
 Puppet::Type.type(:service_plan).provide(:plan, parent: Puppet::Provider::Plesk) do
   desc 'Plesk service plan management'
 
+  Sysparams = ["name","ensure","provider","loglevel"]
+
+  Fix_dash = ["log_rotate","log_bysize","log_bytime","log_max_num_files","log_compress","ssl_redirect","publish_sb_site","apache_restrict_follow_sym_links","apache_additional_settings","apache_additional_ssl_settings","nginx_additional_settings","nginx_proxy_mode","additional_settings","unpaid_website_status"]
+
+
   commands :plesk => "/usr/sbin/plesk"
- puts @resource.parameters_with_value
- def exists?
- 
-   name = @resource[:name]
 
-   _state = self.class.psql_caller("select name from Templates where name = '#{name}'")
-   state = _state.to_s
+  def exists?
+    
+    name = @resource[:name]
 
-   if state.tr("\n", '') == name
+    _state = self.class.psql_caller("select name from Templates where name = '#{name}'")
+    state = _state.to_s
 
-     return true
+    if state.tr("\n", '') == name
 
-   else
-
-     return false
-
-   end
-  end
-
-  def create
-    plesk "bin", "service_plan", "-c", resource[:name]
-  end
-
-  def delete
-    plesk "bin", "service_plan", "-r", resource[:name]
-  end
-
-  def update
-
-    _option = resource[:option]
-    _param = resource[:param]
-
-    if _option.nil?
-      # Need to figure out puppet fail statement 
-      # so we can abort the run using puts for now
-      puts "No option specified for update"
- 
-    elseif _param.nil?
-      # Same as above
-      puts "No parameter passed to the option"
+      return true
 
     else
-      plesk "bin", "service_plan", "-u", _option, _param
+
+      return false
+
     end
-  end
+   end
+
+   def create
+
+     c_array = []
+
+     params = @resource.parameters_with_value
+
+     params.each do |p|
+
+       ps = p.to_s
+
+       next if Sysparams.include? ps
+       
+       val = @resource[ps]
+       
+       if Fix_dash.include? ps
+         ps.gsub!("_","-")
+       end
+             
+       opt = '-' + ps
+
+       c_array.append(opt, val)
+
+     end
+    
+     plesk "bin", "service_plan", "-c", resource[:name], c_array.flatten
+
+   end
+
+   def delete
+
+     plesk "bin", "service_plan", "-r", resource[:name]
+
+   end
+
+   def update
+     c_array = []
+
+     params = @resource.parameters_with_value
+
+     params.each do |p|
+
+       ps = p.to_s
+
+       next if Sysparams.include? ps
+       
+       val = @resource[ps]
+       
+       if Fix_dash.include? ps
+         ps.gsub!("_","-")
+       end
+             
+       opt = '-' + ps
+
+       c_array.append(opt, val)
+
+     end
+ 
+      plesk "bin", "service_plan", "-u", resource[:name], c_array.flatten
+   
+   end
 
 end

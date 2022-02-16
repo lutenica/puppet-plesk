@@ -28,183 +28,183 @@ Puppet::Type.newtype(:service_plan) do
   newparam(:name, :namevar => true) do
     desc 'Name of the plan'
   end
-  newproperty(:max_dom_aliases) do
+  newparam(:max_dom_aliases) do
   end
-  newproperty(:overuse) do
+  newparam(:overuse) do
   end
-  newproperty(:disk_space) do
+  newparam(:disk_space) do
   end
-  newproperty(:disk_space_soft) do
+  newparam(:disk_space_soft) do
   end
-  newproperty(:max_traffic) do
+  newparam(:max_traffic) do
   end
-  newproperty(:max_traffic_soft) do
+  newparam(:max_traffic_soft) do
   end
-  newproperty(:max_wu) do
+  newparam(:max_wu) do
   end
-  newproperty(:max_subftp_users) do
+  newparam(:max_subftp_users) do
   end
-  newproperty(:max_db) do
+  newparam(:max_db) do
   end
-  newproperty(:max_webapps) do
+  newparam(:max_webapps) do
   end
-  newproperty(:max_subdom) do
+  newparam(:max_subdom) do
   end
-  newproperty(:max_site) do
+  newparam(:max_site) do
   end
-  newproperty(:max_site_builder) do
+  newparam(:max_site_builder) do
   end
-  newproperty(:expiration) do
+  newparam(:expiration) do
   end
-  newproperty(:log-rotate) do
+  newparam(:log_rotate) do
   end
-  newproperty(:log-bysize) do
+  newparam(:log_bysize) do
   end
-  newproperty(:log-bytime) do
+  newparam(:log_bytime) do
   end
-  newproperty(:log-max-num-files) do
+  newparam(:log_max_num_files) do
   end
-  newproperty(:log-compress) do
+  newparam(:log_compress) do
   end
-  newproperty(:keep_traf_stat) do
+  newparam(:keep_traf_stat) do
   end
-  newproperty(:wuscripts) do
+  newparam(:wuscripts) do
   end
-  newproperty(:hosting) do
+  newparam(:hosting) do
   end
-  newproperty(:quota) do
+  newparam(:quota) do
   end
-  newproperty(:ssl) do
+  newparam(:ssl) do
   end
-  newproperty(:ssl-redirect) do
+  newparam(:ssl_redirect) do
   end
-  newproperty(:asp) do
+  newparam(:asp) do
   end
-  newproperty(:ssi) do
+  newparam(:ssi) do
   end
-  newproperty(:php) do
+  newparam(:php) do
   end
-  newproperty(:php_handler_id) do
+  newparam(:php_handler_id) do
   end
-  newproperty(:php_served_by_nginx) do
+  newparam(:php_served_by_nginx) do
   end
-  newproperty(:cgi) do
+  newparam(:cgi) do
   end
-  newproperty(:perl) do
+  newparam(:perl) do
   end
-  newproperty(:python) do
+  newparam(:python) do
   end
-  newproperty(:fastcgi) do
+  newparam(:fastcgi) do
   end
-  newproperty(:webstat) do
+  newparam(:webstat) do
   end
-  newproperty(:err_docs) do
+  newparam(:err_docs) do
   end
-  newproperty(:shell) do
+  newparam(:shell) do
   end
-  newproperty(:webstat_protdir) do
+  newparam(:webstat_protdir) do
   end
-  newproperty(:publish-sb-site) do
+  newparam(:publish_sb_site) do
   end
-  newproperty(:upsell_site_builder) do
+  newparam(:upsell_site_builder) do
   end
-  newproperty(:apache-restrict-follow-sym-links) do
+  newparam(:apache_restrict_follow_sym_links) do
   end
-  newproperty(:apache-additional-settings) do
+  newparam(:apache_additional_settings) do
   end
-  newproperty(:apache-additional-ssl-settings) do
+  newparam(:apache_additional_ssl_settings) do
   end
-  newproperty(:nginx-additional-settings) do
+  newparam(:nginx_additional_settings) do
   end
-  newproperty(:create_domains) do
+  newparam(:create_domains) do
   end
-  newproperty(:manage_phosting) do
+  newparam(:manage_phosting) do
   end
-  newproperty(:manage_php_settings) do
+  newparam(:manage_php_settings) do
   end
-  newproperty(:manage_php_version) do
+  newparam(:manage_php_version) do
   end
-  newproperty(:manage_php_safe_mode) do
+  newparam(:manage_php_safe_mode) do
   end
-  newproperty(:manage_sh_access) do
+  newparam(:manage_sh_access) do
   end
-  newproperty(:manage_not_chroot_shell) do
+  newparam(:manage_not_chroot_shell) do
   end
-  newproperty(:manage_quota) do
+  newparam(:manage_quota) do
   end
-  newproperty(:manage_subdomains) do
+  newparam(:manage_subdomains) do
   end
-  newproperty(:manage_domain_aliases) do
+  newparam(:manage_domain_aliases) do
   end
-  newproperty(:manage_log) do
+  newparam(:manage_log) do
   end
-  newproperty(:manage_anonftp) do
+  newparam(:manage_anonftp) do
   end
-  newproperty(:manage_subftp) do
+  newparam(:manage_subftp) do
   end
-  newproperty(:manage_crontab) do
+  newparam(:manage_crontab) do
   end
-  newproperty(:manage_webapps) do
+  newparam(:manage_webapps) do
   end
-  newproperty(:manage_webstat) do
+  newparam(:manage_webstat) do
   end
-  newproperty(:allow_local_backups) do
+  newparam(:allow_local_backups) do
   end
-  newproperty(:allow_ftp_backups) do
+  newparam(:allow_ftp_backups) do
   end
-  newproperty(:allow_account_local_backups) do
+  newparam(:allow_account_local_backups) do
   end
-  newproperty(:allow_account_ftp_backups) do
+  newparam(:allow_account_ftp_backups) do
   end
-  newproperty(:manage_performance) do
+  newparam(:manage_performance) do
   end
-  newproperty(:select_db_server) do
+  newparam(:select_db_server) do
   end
-  newproperty(:remote_db_connection) do
+  newparam(:remote_db_connection) do
   end
-  newproperty(:manage_protected_dirs) do
+  newparam(:manage_protected_dirs) do
   end
-  newproperty(:access_service_users) do
+  newparam(:access_service_users) do
   end
-  newproperty(:access_appcatalog) do
+  newparam(:access_appcatalog) do
   end
-  newproperty(:allow_insecure_sites) do
+  newparam(:allow_insecure_sites) do
   end
-  newproperty(:nginx-proxy-mode) do
+  newparam(:nginx_proxy_mode) do
   end
-  newproperty(:settings) do
+  newparam(:settings) do
   end
-  newproperty(:additional-settings) do
+  newparam(:additional_settings) do
   end
-  newproperty(:unpaid-website-status) do
+  newparam(:unpaid_website_status) do
   end
-  newproperty(:default_server_mysql) do
+  newparam(:default_server_mysql) do
   end
-  newproperty(:default_server_postgresql) do
+  newparam(:default_server_postgresql) do
   end
-  newproperty(:ext_permission_git_manage_git) do
+  newparam(:ext_permission_git_manage_git) do
   end
-  newproperty(:ext_permission_ruby_support_management) do
+  newparam(:ext_permission_ruby_support_management) do
   end
-  newproperty(:ext_permission_ruby_state_management) do
+  newparam(:ext_permission_ruby_state_management) do
   end
-  newproperty(:ext_permission_ruby_version_management) do
+  newparam(:ext_permission_ruby_version_management) do
   end
-  newproperty(:ext_permission_nodejs_support_management) do
+  newparam(:ext_permission_nodejs_support_management) do
   end
-  newproperty(:ext_permission_nodejs_state_management) do
+  newparam(:ext_permission_nodejs_state_management) do
   end
-  newproperty(:ext_permission_nodejs_version_management) do
+  newparam(:ext_permission_nodejs_version_management) do
   end
-  newproperty(:ext_permission_wp_toolkit_manage_wordpress_toolkit) do
+  newparam(:ext_permission_wp_toolkit_manage_wordpress_toolkit) do
   end
-  newproperty(:ext_permission_wp_toolkit_manage_security_wordpress_toolkit) do
+  newparam(:ext_permission_wp_toolkit_manage_security_wordpress_toolkit) do
   end
-  newproperty(:ext_permission_wp_toolkit_manage_cloning) do
+  newparam(:ext_permission_wp_toolkit_manage_cloning) do
   end
-  newproperty(:ext_permission_wp_toolkit_manage_syncing) do
+  newparam(:ext_permission_wp_toolkit_manage_syncing) do
   end
-  newproperty(:ext_permission_wp_toolkit_manage_autoupdates) do
+  newparam(:ext_permission_wp_toolkit_manage_autoupdates) do
   end
 
 end

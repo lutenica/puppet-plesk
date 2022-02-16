@@ -76,7 +76,12 @@
 <div class="docstring">
   <div class="discussion">
     
-<p>A description of what this defined type does</p>
+<p>Create service plan with desired specifications</p>
+
+<p>All params have their details below:  <a
+href="https://docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/service_plan-hosting-plans.38365">docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/service_plan-hosting-plans.38365</a>/
+Note that those with dashes, have been changed to the same but with
+underscores.</p>
 
   </div>
 </div>
@@ -89,9 +94,10 @@
     
       
       <pre class="example code"><code>plesk::service_plan { &#39;PlanName&#39;:
-  ensure =&gt; update,
-  option =&gt; &quot;-disk_space&quot;,
-  param  =&gt; &quot;1000M&quot;
+  ensure              =&gt; present,
+  disk_space          =&gt; &quot;100M&quot;,
+  php_served_by_nginx =&gt; &quot;true&quot;,
+  overuse             =&gt; &quot;block&quot;
 }</code></pre>
     
   </div>
@@ -103,53 +109,1168 @@
         <span class='name'>ensure</span>
       
       
-        <span class='type'>(<tt>Enum['create','update','delete']</tt>)</span>
+        <span class='type'>(<tt>Enum['present','absent','update']</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>create</tt>)</em>
+        <em class="default">(defaults to: <tt>present</tt>)</em>
       
-      
-        &mdash;
-        <div class='inline'>
-<p>Perform the desired action</p>
-
-<p>create - creates the plan update - set the given plan options delete -
-remove the plan</p>
-
-<p>Due to Plesk&#39;s bizarreness you can&#39;t see if a plan exists.…</p>
-</div>
       
     </li>
   
     <li>
       
-        <span class='name'>option</span>
+        <span class='name'>max_dom_aliases</span>
       
       
-        <span class='type'>(<tt>Optional['String']</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
       
-        &mdash;
-        <div class='inline'>
-<p>Options to for plan updates</p>
-</div>
       
     </li>
   
     <li>
       
-        <span class='name'>param</span>
+        <span class='name'>overuse</span>
       
       
-        <span class='type'>(<tt>Optional['String']</tt>)</span>
+        <span class='type'>(<tt>Optional[Enum['block','not_suspend','notify','normal']]</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>block</tt>)</em>
       
-        &mdash;
-        <div class='inline'>
-<p>Parameter for the option</p>
-</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>disk_space</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>disk_space_soft</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_traffic</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_traffic_soft</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_wu</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_subftp_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_db</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_webapps</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_subdom</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_site</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_site_builder</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>expiration</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_rotate</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_bysize</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_bytime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['daily','weekly','monthly']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;daily&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_max_num_files</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_compress</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keep_traf_stat</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wuscripts</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hosting</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>quota</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_redirect</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>asp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssi</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_handler_id</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;plesk-php80-fpm&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_served_by_nginx</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cgi</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>perl</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>python</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fastcgi</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>webstat</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['none','webalizer','awstats']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;none&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>err_docs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>webstat_protdir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>publish_sb_site</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>upsell_site_builder</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_restrict_follow_sym_links</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_additional_settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_additional_ssl_settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nginx_additional_settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>create_domains</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_phosting</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_php_settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_php_version</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_php_safe_mode</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_sh_access</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_not_chroot_shell</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_quota</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_subdomains</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_domain_aliases</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_log</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_anonftp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_subftp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_crontab</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_webapps</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_webstat</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_local_backups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_ftp_backups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_account_local_backups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_account_ftp_backups</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_performance</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>select_db_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>remote_db_connection</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_protected_dirs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_service_users</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_appcatalog</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_insecure_sites</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nginx_proxy_mode</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>additional_settings</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unpaid_website_status</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['disabled','suspended','active']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;disabled&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_server_mysql</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_server_postgresql</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_git_manage_git</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;false&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_ruby_support_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_ruby_state_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_ruby_version_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_nodejs_support_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_nodejs_state_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_nodejs_version_management</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_wp_toolkit_manage_wordpress_toolkit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_wp_toolkit_manage_security_wordpress_toolkit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_wp_toolkit_manage_cloning</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_wp_toolkit_manage_syncing</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ext_permission_wp_toolkit_manage_autoupdates</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['true','false']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;true&#39;</tt>)</em>
+      
       
     </li>
   
@@ -164,6 +1285,18 @@ remove the plan</p>
         <pre class="lines">
 
 
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
 29
 30
 31
@@ -174,20 +1307,356 @@ remove the plan</p>
 36
 37
 38
-39</pre>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/service_plan.pp', line 29</span>
+        <pre class="code"><span class="info file"># File 'manifests/service_plan.pp', line 17</span>
 
 define plesk::service_plan (
-  Enum[&#39;create&#39;,&#39;update&#39;,&#39;delete&#39;] $ensure = create,
-  Optional[&#39;String&#39;] $option,
-  Optional[&#39;String&#39;] $param
-) { 
-    service_plan { $name:,
-      ensure =&gt; $ensure,
-      option =&gt; $option,
-      param  =&gt; $param
+  Enum[&#39;present&#39;,&#39;absent&#39;,&#39;update&#39;] $ensure = present,
+  Optional[String] $max_dom_aliases = undef,
+  Optional[Enum[&#39;block&#39;,&#39;not_suspend&#39;,&#39;notify&#39;,&#39;normal&#39;]] $overuse = block,
+  Optional[String] $disk_space = undef,
+  Optional[String] $disk_space_soft = undef,
+  Optional[String] $max_traffic = undef,
+  Optional[String] $max_traffic_soft = undef,
+  Optional[String] $max_wu = undef,
+  Optional[String] $max_subftp_users = undef,
+  Optional[String] $max_db = undef,
+  Optional[String] $max_webapps = undef,
+  Optional[String] $max_subdom = undef,
+  Optional[String] $max_site = undef,
+  Optional[String] $max_site_builder = undef,
+  Optional[String] $expiration = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $log_rotate = &#39;true&#39;,
+  Optional[String] $log_bysize = undef,
+  Optional[Enum[&#39;daily&#39;,&#39;weekly&#39;,&#39;monthly&#39;]] $log_bytime = &#39;daily&#39;,
+  Optional[String] $log_max_num_files = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $log_compress = &#39;true&#39;,
+  Optional[String] $keep_traf_stat = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $wuscripts = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $hosting = &#39;true&#39;,
+  Optional[String] $quota = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ssl = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ssl_redirect = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $asp = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ssi = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $php = &#39;true&#39;,
+  Optional[String] $php_handler_id = &#39;plesk-php80-fpm&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $php_served_by_nginx = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $cgi = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $perl = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $python = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $fastcgi = &#39;false&#39;,
+  Optional[Enum[&#39;none&#39;,&#39;webalizer&#39;,&#39;awstats&#39;]] $webstat = &#39;none&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $err_docs = &#39;true&#39;,
+  Optional[String] $shell = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $webstat_protdir = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $publish_sb_site = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $upsell_site_builder = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $apache_restrict_follow_sym_links = &#39;false&#39;,
+  Optional[String] $apache_additional_settings = undef,
+  Optional[String] $apache_additional_ssl_settings = undef,
+  Optional[String] $nginx_additional_settings = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $create_domains = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_phosting = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_php_settings = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_php_version = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_php_safe_mode = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_sh_access = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_not_chroot_shell = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_quota = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_subdomains = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_domain_aliases = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_log = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_anonftp = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_subftp = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_crontab = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_webapps = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_webstat = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $allow_local_backups = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $allow_ftp_backups = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $allow_account_local_backups = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $allow_account_ftp_backups = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_performance = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $select_db_server = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $remote_db_connection = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $manage_protected_dirs = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $access_service_users = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $access_appcatalog = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $allow_insecure_sites = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $nginx_proxy_mode = &#39;true&#39;,
+  Optional[String] $settings = undef,
+  Optional[String] $additional_settings = undef,
+  Optional[Enum[&#39;disabled&#39;,&#39;suspended&#39;,&#39;active&#39;]] $unpaid_website_status = &#39;disabled&#39;,
+  Optional[String] $default_server_mysql = undef,
+  Optional[String] $default_server_postgresql = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_git_manage_git = &#39;false&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_ruby_support_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_ruby_state_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_ruby_version_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_nodejs_support_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_nodejs_state_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_nodejs_version_management = undef,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_wp_toolkit_manage_wordpress_toolkit = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_wp_toolkit_manage_security_wordpress_toolkit = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_wp_toolkit_manage_cloning = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_wp_toolkit_manage_syncing = &#39;true&#39;,
+  Optional[Enum[&#39;true&#39;,&#39;false&#39;]] $ext_permission_wp_toolkit_manage_autoupdates = &#39;true&#39;
+) {
+    service_plan { &quot;$name&quot;:
+      ensure                                                      =&gt; $ensure,
+      max_dom_aliases                                             =&gt; $max_dom_aliases,
+      overuse                                                     =&gt; $overuse,
+      disk_space                                                  =&gt; $disk_space,
+      disk_space_soft                                             =&gt; $disk_space_soft,
+      max_traffic                                                 =&gt; $max_traffic,
+      max_traffic_soft                                            =&gt; $max_traffic_soft,
+      max_wu                                                      =&gt; $max_wu,
+      max_subftp_users                                            =&gt; $max_subftp_users,
+      max_db                                                      =&gt; $max_db,
+      max_webapps                                                 =&gt; $max_webapps,
+      max_subdom                                                  =&gt; $max_subdom,
+      max_site                                                    =&gt; $max_site,
+      max_site_builder                                            =&gt; $max_site_builder,
+      expiration                                                  =&gt; $expiration,
+      log_rotate                                                  =&gt; $log_rotate,
+      log_bysize                                                  =&gt; $log_bysize,
+      log_bytime                                                  =&gt; $log_bytime,
+      log_max_num_files                                           =&gt; $log_max_num_files,
+      log_compress                                                =&gt; $log_compress,
+      keep_traf_stat                                              =&gt; $keep_traf_stat,
+      wuscripts                                                   =&gt; $wuscripts,
+      hosting                                                     =&gt; $hosting,
+      quota                                                       =&gt; $quota,
+      ssl                                                         =&gt; $ssl,
+      ssl_redirect                                                =&gt; $ssl_redirect,
+      asp                                                         =&gt; $asp,
+      ssi                                                         =&gt; $ssi,
+      php                                                         =&gt; $php,
+      php_handler_id                                              =&gt; $php_handler_id,
+      php_served_by_nginx                                         =&gt; $php_served_by_nginx,
+      cgi                                                         =&gt; $cgi,
+      perl                                                        =&gt; $perl,
+      python                                                      =&gt; $python,
+      fastcgi                                                     =&gt; $fastcgi,
+      webstat                                                     =&gt; $webstat,
+      err_docs                                                    =&gt; $err_docs,
+      shell                                                       =&gt; $shell,
+      webstat_protdir                                             =&gt; $webstat_protdir,
+      publish_sb_site                                             =&gt; $publish_sb_site,
+      upsell_site_builder                                         =&gt; $upsell_site_builder,
+      apache_restrict_follow_sym_links                            =&gt; $apache_restrict_follow_sym_links,
+      apache_additional_settings                                  =&gt; $apache_additional_settings,
+      apache_additional_ssl_settings                              =&gt; $apache_additional_ssl_settings,
+      nginx_additional_settings                                   =&gt; $nginx_additional_settings,
+      create_domains                                              =&gt; $create_domains,
+      manage_phosting                                             =&gt; $manage_phosting,
+      manage_php_settings                                         =&gt; $manage_php_settings,
+      manage_php_version                                          =&gt; $manage_php_version,
+      manage_php_safe_mode                                        =&gt; $manage_php_safe_mode,
+      manage_sh_access                                            =&gt; $manage_sh_access,
+      manage_not_chroot_shell                                     =&gt; $manage_not_chroot_shell,
+      manage_quota                                                =&gt; $manage_quota,
+      manage_subdomains                                           =&gt; $manage_subdomains,
+      manage_domain_aliases                                       =&gt; $manage_domain_aliases,
+      manage_log                                                  =&gt; $manage_log,
+      manage_anonftp                                              =&gt; $manage_anonftp,
+      manage_subftp                                               =&gt; $manage_subftp,
+      manage_crontab                                              =&gt; $manage_crontab,
+      manage_webapps                                              =&gt; $manage_webapps,
+      manage_webstat                                              =&gt; $manage_webstat,
+      allow_local_backups                                         =&gt; $allow_local_backups,
+      allow_ftp_backups                                           =&gt; $allow_ftp_backups,
+      allow_account_local_backups                                 =&gt; $allow_account_local_backups,
+      allow_account_ftp_backups                                   =&gt; $allow_account_ftp_backups,
+      manage_performance                                          =&gt; $manage_performance,
+      select_db_server                                            =&gt; $select_db_server,
+      remote_db_connection                                        =&gt; $remote_db_connection,
+      manage_protected_dirs                                       =&gt; $manage_protected_dirs,
+      access_service_users                                        =&gt; $access_service_users,
+      access_appcatalog                                           =&gt; $access_appcatalog,
+      allow_insecure_sites                                        =&gt; $allow_insecure_sites,
+      nginx_proxy_mode                                            =&gt; $nginx_proxy_mode,
+      settings                                                    =&gt; $settings,
+      additional_settings                                         =&gt; $additional_settings,
+      unpaid_website_status                                       =&gt; $unpaid_website_status,
+      default_server_mysql                                        =&gt; $default_server_mysql,
+      default_server_postgresql                                   =&gt; $default_server_postgresql,
+      ext_permission_git_manage_git                               =&gt; $ext_permission_git_manage_git,
+      ext_permission_ruby_support_management                      =&gt; $ext_permission_ruby_support_management,
+      ext_permission_ruby_state_management                        =&gt; $ext_permission_ruby_state_management,
+      ext_permission_ruby_version_management                      =&gt; $ext_permission_ruby_version_management,
+      ext_permission_nodejs_support_management                    =&gt; $ext_permission_nodejs_support_management,
+      ext_permission_nodejs_state_management                      =&gt; $ext_permission_nodejs_state_management,
+      ext_permission_nodejs_version_management                    =&gt; $ext_permission_nodejs_version_management,
+      ext_permission_wp_toolkit_manage_wordpress_toolkit          =&gt; $ext_permission_wp_toolkit_manage_wordp,
+      ext_permission_wp_toolkit_manage_security_wordpress_toolkit =&gt; $ext_permission_wp_toolkit_man,
+      ext_permission_wp_toolkit_manage_cloning                    =&gt; $ext_permission_wp_toolkit_manage_cloning,
+      ext_permission_wp_toolkit_manage_syncing                    =&gt; $ext_permission_wp_toolkit_manage_syncing,
+      ext_permission_wp_toolkit_manage_autoupdates                =&gt; $ext_permission_wp_toolkit_manage_autoupdates
     }
 }</pre>
       </td>
