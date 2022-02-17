@@ -123,8 +123,10 @@
         <span class='name'>exec</span>
       
       
-        <span class='type'>(<tt>Optional['String']</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
         &mdash;
@@ -139,8 +141,10 @@
         <span class='name'>url</span>
       
       
-        <span class='type'>(<tt>Optional['String']</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
     </li>
@@ -173,8 +177,8 @@
 
 define plesk::extension(
   Enum[&#39;present&#39;, &#39;absent&#39;, &#39;latest&#39;, &#39;enabled&#39;, &#39;disabled&#39;, &#39;exec&#39;] $ensure = present,
-  Optional[&#39;String&#39;] $exec,
-  Optional[&#39;String&#39;] $url
+  Optional[String] $exec = undef,
+  Optional[String] $url = undef
 ) {
     plesk_extension { $name:
       ensure =&gt; $ensure,

@@ -3,12 +3,11 @@ Puppet::Type.newtype(:plesk_branding_theme) do
 
   ensurable
 
-  newparam(:name, :namevar => true) do
+  newparam(:name, namevar: true) do
     desc 'Name of the theme'
   end
 
   newproperty(:source) do
     desc 'Path to the theme archive'
   end
-
 end

@@ -114,6 +114,25 @@
   
     <li>
       
+        <span class='name'>apt</span>
+      
+      
+        <span class='type'>(<tt>Bool</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Boolean weather to use a package or directly install from the specified
+file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>theme_name</span>
       
       
@@ -156,11 +175,6 @@ itself, i.e in the meta.xml otherwise ensures wont work as expected.</p>
         <pre class="lines">
 
 
-17
-18
-19
-20
-21
 22
 23
 24
@@ -171,23 +185,32 @@ itself, i.e in the meta.xml otherwise ensures wont work as expected.</p>
 29
 30
 31
-32</pre>
+32
+33
+34
+35
+36
+37
+38
+39</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/theme.pp', line 17</span>
+        <pre class="code"><span class="info file"># File 'manifests/theme.pp', line 22</span>
 
 class plesk::theme (
   Enum[&#39;present&#39;, &#39;absent&#39;] $ensure = present,
+  Bool $apt = true,
   String $theme_name,
   String $theme_path
 ) {
-  # Install/Uninstall/Upgrade the theme package
-  package { &quot;$theme_name&quot;:
-    ensure   =&gt; $ensure,
-    provider =&gt; apt,
-    notify   =&gt; Plesk_branding_theme[$theme_name]
+  if $apt {
+    package { $theme_name:
+      ensure   =&gt; $ensure,
+      provider =&gt; apt,
+      notify   =&gt; Plesk_branding_theme[$theme_name]
+    }
   }
-  plesk_branding_theme { &quot;$theme_name&quot;:
+  plesk_branding_theme { $theme_name:
     ensure =&gt; $ensure,
     source =&gt; $theme_path
   }

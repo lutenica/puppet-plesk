@@ -2,7 +2,6 @@ Puppet::Type.newtype(:service_plan) do
   desc 'Managing plesk service plans'
 
   ensurable do
-
     desc 'Ensure the action to perform'
 
     newvalue :present do
@@ -22,10 +21,9 @@ Puppet::Type.newtype(:service_plan) do
         provider.update
       end
     end
-
   end
 
-  newparam(:name, :namevar => true) do
+  newparam(:name, namevar: true) do
     desc 'Name of the plan'
   end
   newparam(:max_dom_aliases) do
@@ -206,5 +204,4 @@ Puppet::Type.newtype(:service_plan) do
   end
   newparam(:ext_permission_wp_toolkit_manage_autoupdates) do
   end
-
 end

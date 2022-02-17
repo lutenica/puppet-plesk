@@ -129,16 +129,32 @@ as the actual package name and the one you use in theme_name.</p>
 parameters. Everything mail related is removed. It can be easily added and
 will be in future, as all that is required is to actually add the params to
 the defined type and the custom type itself. The provider would only need
-the paramteres added to the Fix_dash array if one is forced to use an
+the paramteres added to the FIXDASH array if one is forced to use an
 underscore.</p>
 
 <p>Also due to the way Plesk works we can only ensure that a plan exists but
 not all values, so ensure only confirms it is created with the given
 params.</p>
 
+<h4 id="label-Set+plesk+notifications">Set plesk notifications</h4>
+
+<p>node plesk.node {  plesk::notification { &#39;domain_creation&#39;:  ensure
+=&gt; present,  send2admin =&gt; &#39;false&#39;,  send2reseller =&gt;
+&#39;false&#39;,  send2client =&gt; &#39;true&#39;,<br>  }</p>
+
+<h5 id="label-NOTE+that+the+true+falses+are+strings.">NOTE that the true falses are strings.</h5>
+
+<p>The name of the resource should be the actual notification code availble
+here:</p>
+
+<p><a
+href="https://docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/notification-email-notification-about-system-events.66604">docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/notification-email-notification-about-system-events.66604</a>/</p>
+
 <h2 id="label-Limitations">Limitations</h2>
 <ul><li>
 <p>This has been tested with Ubuntu 20.04 only.</p>
+</li><li>
+<p>Puppet version &gt;= 6.25</p>
 </li><li>
 <p>Plesk 18.0.X.</p>
 </li></ul>

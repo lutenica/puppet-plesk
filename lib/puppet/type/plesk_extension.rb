@@ -17,7 +17,7 @@ Puppet::Type.newtype(:plesk_extension) do
     end
 
     newvalue :latest do
-      if provider.exists? 
+      if provider.exists?
         provider.upgrade
       end
     end
@@ -39,10 +39,9 @@ Puppet::Type.newtype(:plesk_extension) do
         provider.exec
       end
     end
-  
   end
 
-  newparam(:name, :namevar => true) do
+  newparam(:name, namevar: true) do
     desc 'Name of the extension'
   end
 
@@ -53,5 +52,4 @@ Puppet::Type.newtype(:plesk_extension) do
   newproperty(:url) do
     desc 'URL to download ext/upgrade from'
   end
-
 end

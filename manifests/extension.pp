@@ -26,8 +26,8 @@
 #      
 define plesk::extension(
   Enum['present', 'absent', 'latest', 'enabled', 'disabled', 'exec'] $ensure = present,
-  Optional['String'] $exec,
-  Optional['String'] $url
+  Optional[String] $exec = undef,
+  Optional[String] $url = undef
 ) {
     plesk_extension { $name:
       ensure => $ensure,

@@ -64,14 +64,31 @@ node 'plesk.node' {
 Note that the current plan provider only supports hosting related parameters. Everything mail
 related is removed. It can be easily added and will be in future, as all that is required is
 to actually add the params to the defined type and the custom type itself. The provider would only
-need the paramteres added to the Fix_dash array if one is forced to use an underscore.
+need the paramteres added to the FIXDASH array if one is forced to use an underscore.
 
 Also due to the way Plesk works we can only ensure that a plan exists but not all values, so ensure 
 only confirms it is created with the given params.
 
+#### Set plesk notifications
+
+node plesk.node {
+   plesk::notification { 'domain_creation': 
+     ensure        => present,
+     send2admin    => 'false',
+     send2reseller => 'false',
+     send2client   => 'true',     
+   }
+
+#####NOTE that the true falses are strings.
+
+The name of the resource should be the actual notification code availble here:
+
+https://docs.plesk.com/en-US/obsidian/cli-linux/using-command-line-utilities/notification-email-notification-about-system-events.66604/
+
 ## Limitations
  
  * This has been tested with Ubuntu 20.04 only.
+ * Puppet version >= 6.25 
  * Plesk 18.0.X.
 
 ## Development
